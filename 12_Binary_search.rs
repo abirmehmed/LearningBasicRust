@@ -19,7 +19,7 @@ fn main() {
     let target = 5;
 
     match binary_search(&arr, target) {
-        Some(index) => println!("{} was found at index {}", target, index),
+        Some(index) => println!("{} was found at index {}", target, index+1),
         None => println!("{} was not found in the array", target),
     }
 }
