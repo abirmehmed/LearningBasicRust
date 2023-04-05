@@ -40,8 +40,12 @@ fn merge_sort(mut vec: Vec<i32>) -> Vec<i32> {
 
     result
 }
+use rand::Rng;
+
 fn main() {
-    let unsorted_vec = vec![4, 2, 3, 1];
+    let mut rng = rand::thread_rng();
+    let unsorted_vec: Vec<i32> = (0..10).map(|_| rng.gen_range(1..=100)).collect();
+    println!("Unsorted vector: {:?}", unsorted_vec);
     let sorted_vec = merge_sort(unsorted_vec);
     println!("Sorted vector: {:?}", sorted_vec);
 }
