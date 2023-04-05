@@ -9,8 +9,11 @@ fn bubble_sort(mut nums: Vec<i32>) -> Vec<i32> {
     }
     nums
 }
+use rand::Rng;
 fn main() {
-    let unsorted = vec![4, 2, 3, 1];
+    let mut rng = rand::thread_rng();
+    let unsorted: Vec<i32> = (0..10).map(|_| rng.gen_range(0..100)).collect();
+    println!("Unsorted: {:?}", unsorted);
     let sorted = bubble_sort(unsorted);
     println!("Sorted: {:?}", sorted);
 }
