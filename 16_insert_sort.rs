@@ -7,8 +7,14 @@ fn insertion_sort(arr: &mut [i32]) {
         }
     }
 }
+use rand::Rng;
+
 fn main() {
-    let mut arr = [5, 2, 4, 6, 1, 3];
+    let mut rng = rand::thread_rng();
+    let mut arr: [i32; 10] = [0; 10];
+    for i in 0..10 {
+        arr[i] = rng.gen_range(1..101);
+    }
     println!("Unsorted: {:?}", arr);
 
     insertion_sort(&mut arr);
