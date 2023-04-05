@@ -4,39 +4,44 @@ fn merge_sort(mut vec: Vec<i32>) -> Vec<i32> {
     }
 
     let mid = vec.len() / 2;
-    let left = merge_sort(vec[..mid].to_vec());
-    let right = merge_sort(vec[mid..].to_vec());
+    let left_half = merge_sort(vec.drain(..mid).collect());
+    let right_half = merge_sort(vec);
 
-    let mut left_iter = left.into_iter();
-    let mut right_iter = right.into_iter();
-    let mut i = 0;
-    let mut j = 0;
+    let mut result = Vec::new();
+    let mut left_iter = left_half.into_iter();
+    let mut right_iter = right_half.into_iter();
+    let mut left_peek = left_iter.next();
+    let mut right_peek = right_iter.next();
 
-    while i < left.len() && j < right.len() {
-        if left[i] < right[j] {
-            vec[i + j] = left_iter.next().unwrap();
-            i += 1;
-        } else {
-            vec[i + j] = right_iter.next().unwrap();
-            j += 1;
+    loop {
+        match (left_peek, right_peek) {
+            (Some(l), Some(r)) => {
+                if l <= r {
+                    result.push(l);
+                    left_peek = left_iter.next();
+                } else {
+                    result.push(r);
+                    right_peek = right_iter.next();
+                }
+            }
+            (Some(l), None) => {
+                result.push(l);
+                result.extend(left_iter);
+                break;
+            }
+            (None, Some(r)) => {
+                result.push(r);
+                result.extend(right_iter);
+                break;
+            }
+            (None, None) => break,
         }
     }
 
-    while i < left.len() {
-        vec[i + j] = left_iter.next().unwrap();
-        
-        i += 1;
-    }
-
-    while j < right.len() {
-        vec[i + j] = right_iter.next().unwrap();
-        j += 1;
-    }
-
-    vec
+    result
 }
 fn main() {
-    let unsorted_list = vec![4, 2, 3, 1];
-    let sorted_list = merge_sort(unsorted_list);
-    println!("{:?}", sorted_list);
+    let unsorted_vec = vec![4, 2, 3, 1];
+    let sorted_vec = merge_sort(unsorted_vec);
+    println!("Sorted vector: {:?}", sorted_vec);
 }
