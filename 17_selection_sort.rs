@@ -10,3 +10,10 @@ fn selection_sort(arr: &mut [i32]) {
         arr.swap(i, min_index);
     }
 }
+fn main() {
+    let mut arr = [5, 3, 1, 4, 2];
+    println!("Before: {:?}", arr);
+
+    selection_sort(&mut arr);
+    println!("After: {:?}", arr);
+}
