@@ -1,3 +1,5 @@
+use rand::Rng;
+
 fn selection_sort(arr: &mut [i32]) {
     let n = arr.len();
     for i in 0..n {
@@ -10,8 +12,10 @@ fn selection_sort(arr: &mut [i32]) {
         arr.swap(i, min_index);
     }
 }
+
 fn main() {
-    let mut arr = [5, 3, 1, 4, 2];
+    let mut rng = rand::thread_rng();
+    let mut arr: Vec<i32> = (0..10).map(|_| rng.gen_range(0..100)).collect();
     println!("Before: {:?}", arr);
 
     selection_sort(&mut arr);
