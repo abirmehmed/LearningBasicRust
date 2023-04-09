@@ -24,3 +24,10 @@ fn heapify(arr: &mut [i32], len: usize, i: usize) {
         heapify(arr, len, largest);
     }
 }
+fn main() {
+    let mut arr = [12, 11, 13, 5, 6, 7];
+    println!("Original array: {:?}", arr);
+
+    heap_sort(&mut arr);
+    println!("Sorted array: {:?}", arr);
+}
