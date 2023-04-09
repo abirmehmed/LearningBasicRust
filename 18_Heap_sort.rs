@@ -24,8 +24,14 @@ fn heapify(arr: &mut [i32], len: usize, i: usize) {
         heapify(arr, len, largest);
     }
 }
+use rand::Rng;
+
 fn main() {
-    let mut arr = [12, 11, 13, 5, 6, 7];
+    let mut rng = rand::thread_rng();
+    let mut arr: [i32; 10] = [0; 10];
+    for i in 0..10 {
+        arr[i] = rng.gen_range(-100..100);
+    }
     println!("Original array: {:?}", arr);
 
     heap_sort(&mut arr);
