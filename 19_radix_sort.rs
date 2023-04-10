@@ -23,8 +23,16 @@ fn radix_sort(arr: &mut [u32]) {
         exp *= 10;
     }
 }
+use rand::Rng;
+
 fn main() {
-    let mut arr = [170, 45, 75, 90, 802, 24, 2, 66];
+    let mut rng = rand::thread_rng();
+    let mut arr: [u32; 10] = [0; 10];
+
+    for i in 0..10 {
+        arr[i] = rng.gen_range(0..100);
+    }
+
     println!("Original array: {:?}", arr);
 
     radix_sort(&mut arr);
