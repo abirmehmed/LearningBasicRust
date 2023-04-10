@@ -23,3 +23,10 @@ fn radix_sort(arr: &mut [u32]) {
         exp *= 10;
     }
 }
+fn main() {
+    let mut arr = [170, 45, 75, 90, 802, 24, 2, 66];
+    println!("Original array: {:?}", arr);
+
+    radix_sort(&mut arr);
+    println!("Sorted array: {:?}", arr);
+}
