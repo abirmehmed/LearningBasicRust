@@ -13,8 +13,15 @@ fn counting_sort(arr: &mut [u32], maxval: u32) {
         }
     }
 }
+use rand::Rng;
+
 fn main() {
-    let mut arr: [u32; 8] = [3, 6, 4, 1, 3, 4, 1, 4];
+    let mut rng = rand::thread_rng();
+    let mut arr: [u32; 8] = [0; 8];
+    for i in 0..arr.len() {
+        arr[i] = rng.gen_range(0..10);
+    }
+    println!("Unsorted array: {:?}", arr);
     let maxval = *arr.iter().max().unwrap();
     counting_sort(&mut arr, maxval);
     println!("Sorted array: {:?}", arr);
